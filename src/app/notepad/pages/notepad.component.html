@@ -11,7 +11,7 @@
   src="../../../assets/icons/delete.svg" 
   ngClass="icon-size">
 </button>
-<button (click)="deleteTab(selected.value)">
+<button (click)="saveTextToFile(selected.value)">
   Save
   <img 
   src="../../../assets/icons/save.svg" 
@@ -19,7 +19,7 @@
 </button>
 <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
   <mat-tab *ngFor="let tab of tabs" [label]="tab">
-    <textarea ngClass="textarea-size"></textarea>
+    <textarea ngClass="textarea-size" [(ngModel)]="text"></textarea>
   </mat-tab>
 </mat-tab-group>
 

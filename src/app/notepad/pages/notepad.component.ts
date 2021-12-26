@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFileDialogComponent } from '../component/dialogs/add-file/add-file-dialog.component';
 
@@ -14,7 +14,7 @@ export class NotepadComponent implements OnInit {
   selected = new FormControl(0);
   text: string = '';
 
-  constructor(private dialog: MatDialog, public builder: FormBuilder) {
+  constructor(private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -34,5 +34,21 @@ export class NotepadComponent implements OnInit {
 
   deleteTab(index: number): void {
     this.tabs.splice(index, 1);
+  }
+
+  saveTextToFile(index: number): void {
+    const file = new Blob([this.text], {type: 'text/plain'});
+
+    let url = window.URL.createObjectURL(file);
+    
+    let a = document.createElement('a');
+    document.body.appendChild(a);
+
+    a.setAttribute('style', 'display: none');
+    a.href = url;
+    a.download = `${this.tabs[index]}.txt`
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
   }
 }
