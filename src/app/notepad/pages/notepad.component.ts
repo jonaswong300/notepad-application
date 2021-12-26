@@ -10,7 +10,7 @@ import { AddFileDialogComponent } from '../component/dialogs/add-file/add-file-d
 })
 export class NotepadComponent implements OnInit {
 
-  tabs = ["BLANK"]
+  tabs: string[] = []
   selected = new FormControl(0);
   text: string = '';
 
