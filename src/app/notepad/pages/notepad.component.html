@@ -28,7 +28,7 @@
   </div>
   <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let tab of tabs" [label]="tab">
-      <textarea ngClass="textarea-size" [(ngModel)]="text"></textarea>
+      <textarea ngClass="textarea-size" [(ngModel)]="text" placeholder="Enter text"></textarea>
     </mat-tab>
   </mat-tab-group>
 </div>
