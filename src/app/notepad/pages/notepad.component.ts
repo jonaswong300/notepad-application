@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFileDialogComponent } from '../component/dialogs/add-file/add-file-dialog.component';
 
@@ -12,32 +12,24 @@ export class NotepadComponent implements OnInit {
 
   tabs = ["first"]
   selected = new FormControl(0);
-  fileName: string | undefined;
-  text = new FormControl('');
+  text: string = '';
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, public builder: FormBuilder) {
   }
 
   ngOnInit(): void {
   }
 
-  addFileName(): void {
+  addNameToTab(): void {
     const dialogRef = this.dialog.open(AddFileDialogComponent, {
       width: '250px',
-      data: this.fileName,
     });
 
-    dialogRef.afterClosed().subscribe((x) => {
-      console.info(`Dialog was closed, data = ${JSON.stringify(x)}`);
-      this.fileName = x;
-      if(this.fileName){
-        this.tabs.push(this.fileName);
+    dialogRef.afterClosed().subscribe((fileName) => {
+      if(fileName){
+        this.tabs.push(fileName);
       }
     })
-  }
-
-  addTab(): void {
-    this.tabs.push('new');
   }
 
   deleteTab(index: number): void {
