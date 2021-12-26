@@ -1,26 +1,37 @@
-<h1>NotePad Application</h1>
-<button (click)="addNameToTab()">
-  Add 
-  <img 
-   src="../../../assets/icons/addition.png" 
-   ngClass="icon-size">
-</button>
-<button (click)="deleteTab(selected.value)">
-  Delete
-  <img 
-  src="../../../assets/icons/delete.svg" 
-  ngClass="icon-size">
-</button>
-<button (click)="saveTextToFile(selected.value)">
-  Save
-  <img 
-  src="../../../assets/icons/save.svg" 
-  ngClass="icon-size">
-</button>
-<mat-tab-group (selectedIndexChange)="selected.setValue($event)">
-  <mat-tab *ngFor="let tab of tabs" [label]="tab">
-    <textarea ngClass="textarea-size" [(ngModel)]="text"></textarea>
-  </mat-tab>
-</mat-tab-group>
+<div fxLayout="column"  fxLayoutGap="20px" fxLayoutAlign="center center">
+  <h1>NotePad Application</h1>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <button (click)="addNameToTab()">
+      Add 
+      <img 
+        src="../../../assets/icons/addition.png" 
+        ngClass="icon-size">
+    </button>
+    <button (click)="updateFileName(selected.value)">
+      Update 
+      <img 
+        src="../../../assets/icons/update.svg" 
+        ngClass="icon-size">
+    </button>
+    <button (click)="deleteTab(selected.value)">
+      Delete
+      <img 
+      src="../../../assets/icons/delete.svg" 
+      ngClass="icon-size">
+    </button>
+    <button (click)="saveTextToFile(selected.value)">
+      Save
+      <img 
+      src="../../../assets/icons/save.svg" 
+      ngClass="icon-size">
+    </button>
+  </div>
+  <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
+    <mat-tab *ngFor="let tab of tabs" [label]="tab">
+      <textarea ngClass="textarea-size" [(ngModel)]="text"></textarea>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
 
 

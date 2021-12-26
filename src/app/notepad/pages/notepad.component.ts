@@ -10,7 +10,7 @@ import { AddFileDialogComponent } from '../component/dialogs/add-file/add-file-d
 })
 export class NotepadComponent implements OnInit {
 
-  tabs = ["first"]
+  tabs = ["BLANK"]
   selected = new FormControl(0);
   text: string = '';
 
@@ -50,5 +50,9 @@ export class NotepadComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
     a.remove();
+  }
+
+  updateFileName(index: number): void{
+    //https://www.freakyjolly.com/angular-material-table-operations-using-dialog/
   }
 }
