@@ -1,7 +1,15 @@
-<h1>notepad works!</h1>
-<button (click)="addTab()">Add</button>
-<button (click)="addFileName()">Add File</button>
-<button (click)="deleteTab(selected.value)">Delete</button>
+<h1>NotePad Application</h1>
+<button (click)="addFileName()">
+  Add File 
+  <img 
+   src="../../../assets/icons/addition.png" 
+   ngClass="icon-size">
+</button>
+<button (click)="deleteTab(selected.value)">
+  Delete
+  <img 
+  src="../../../assets/icons/delete.svg" 
+  ngClass="icon-size"></button>
 <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
   <mat-tab *ngFor="let tab of tabs" [label]="tab">
     <textarea ngClass="textarea-size" formControlName="text">
