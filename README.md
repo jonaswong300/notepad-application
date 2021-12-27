@@ -12,6 +12,8 @@ Simple Notepad application to showcase the following
   - Inputs
 - Using of Flex layout module for easy templating and css formatting. 
 
+![image](https://user-images.githubusercontent.com/61023335/147453422-4db96a09-5f27-486d-a159-d64e2d5fd131.png)
+
 ### Use case
 - Add file
 - Update file name
