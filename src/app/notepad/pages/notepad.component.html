@@ -27,11 +27,13 @@
     </button>
   </div>
   <div *ngIf="errorMessage" ngClass="error-message">{{errorMessage}}</div>
-  <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
-    <mat-tab *ngFor="let tab of tabs" [label]="tab">
-      <textarea ngClass="textarea-size" [(ngModel)]="text" placeholder="Enter text"></textarea>
-    </mat-tab>
-  </mat-tab-group>
+  <form [formGroup]="notepadForm">
+    <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
+      <mat-tab *ngFor="let tab of tabs" [label]="tab">
+        <textarea ngClass="textarea-size" [formControlName]="tab" placeholder="Enter text"></textarea>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
 </div>
 
 

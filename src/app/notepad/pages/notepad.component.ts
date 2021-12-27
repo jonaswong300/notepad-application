@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFileDialogComponent } from '../component/dialogs/add-file/add-file-dialog.component';
 import { FileParams } from '../models/fileParam';
@@ -14,8 +14,10 @@ export class NotepadComponent implements OnInit {
   tabs: string[] = []
   text: string = '';
   errorMessage: string | undefined;
+  notepadForm: FormGroup = new FormGroup({});
+  notepad: FormControl = new FormControl('');
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -37,9 +39,11 @@ export class NotepadComponent implements OnInit {
       dialogRef.afterClosed().subscribe((data) => {
         if(data) {
           if(data.action === 'Add') {
+            this.addNotepadControlToForm(data.fileName);
             this.tabs.push(data.fileName);
           }
           else if(data.action === 'Update' && data.index >= 0) {
+            this.updateNotepadControlToForm(this.tabs[data.index], data.fileName);
             this.tabs[data.index] = data.fileName;
           }
         }
@@ -55,7 +59,8 @@ export class NotepadComponent implements OnInit {
 
   saveTextToFile(index: number): void {
     if(!this.checkForError('Save')){
-      const file = new Blob([this.text], {type: 'text/plain'});
+      const formControlName = this.tabs[index];
+      const file = new Blob([this.notepadForm.controls[formControlName].value], {type: 'text/plain'});
 
       let url = window.URL.createObjectURL(file);
       
@@ -95,5 +100,16 @@ export class NotepadComponent implements OnInit {
     }
 
     return false;
+  }
+
+  private addNotepadControlToForm(controlName: string): void {
+    this.notepadForm.addControl(controlName, new FormControl(''));
+  }
+
+  private updateNotepadControlToForm(previousControlName: string, controlName: string): void {
+    const previousValue = this.notepadForm.controls[previousControlName].value;
+    this.notepadForm.removeControl(previousControlName);
+    this.notepadForm.addControl(controlName, new FormControl(''));
+    this.notepadForm.controls[controlName].setValue(previousValue);
   }
 }
