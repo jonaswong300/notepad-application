@@ -6,9 +6,16 @@
       <input matInput [(ngModel)]="fileName"/>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button (click)="emitFileName()">Add</button>
+  <div mat-dialog-actions fxLayout="row" fxLayoutGap="5px">
+    <button mat-button (click)="emitFileName()">Add 
+      <img 
+      src="../../../assets/icons/add.svg" 
+      ngClass="icon-size"></button>
+    <button mat-button (click)="cancel()">Cancel
+      <img 
+        src="../../../assets/icons/cancel.svg" 
+        ngClass="icon-size">
+    </button>
   </div>
 </div>
  
@@ -20,9 +27,17 @@
       <input matInput [(ngModel)]="fileName"/>
     </mat-form-field>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button (click)="emitFileName()">Update</button>
+  <div mat-dialog-actions fxLayout="row" fxLayoutGap="5px">
+    <button mat-button (click)="emitFileName()">Update
+      <img 
+        src="../../../assets/icons/update.svg" 
+        ngClass="icon-size">
+    </button>
+    <button mat-button (click)="cancel()">Cancel
+      <img 
+        src="../../../assets/icons/cancel.svg" 
+        ngClass="icon-size">
+    </button>
   </div>
 </div>
   
