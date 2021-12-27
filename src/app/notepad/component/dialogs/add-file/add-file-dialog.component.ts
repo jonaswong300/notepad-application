@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileParams } from 'src/app/notepad/models/fileParam';
 
 @Component({
   selector: 'add-file-dialog',
@@ -8,13 +9,17 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddFileDialogComponent {
   fileName: string = '';
 
-  constructor(public dialogRef: MatDialogRef<AddFileDialogComponent>) {}
+  constructor(public dialogRef: MatDialogRef<AddFileDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: FileParams) {
+      console.info(`data injected = ${JSON.stringify(data)}`);
+    }
 
   cancel(): void {
     this.dialogRef.close();
   }
 
   emitFileName(): void {
-    this.dialogRef.close(this.fileName);
+    this.dialogRef.close({fileName: this.fileName, index: this.data.index, action: this.data.action});
+    // this.dialogRef.close(this.fileName);
   }
 }

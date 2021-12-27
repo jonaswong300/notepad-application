@@ -1,13 +1,13 @@
 <div fxLayout="column"  fxLayoutGap="20px" fxLayoutAlign="center center">
   <h1>NotePad Application</h1>
   <div fxLayout="row" fxLayoutGap="10px">
-    <button (click)="addNameToTab()">
+    <button (click)="openDialog('Add')">
       Add 
       <img 
         src="../../../assets/icons/addition.png" 
         ngClass="icon-size">
     </button>
-    <button (click)="updateFileName(selected.value)">
+    <button (click)="openDialog('Update', selected.value)">
       Update 
       <img 
         src="../../../assets/icons/update.svg" 
@@ -26,6 +26,7 @@
       ngClass="icon-size">
     </button>
   </div>
+  <div *ngIf="errorMessage" ngClass="error-message">{{errorMessage}}</div>
   <mat-tab-group (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let tab of tabs" [label]="tab">
       <textarea ngClass="textarea-size" [(ngModel)]="text" placeholder="Enter text"></textarea>
