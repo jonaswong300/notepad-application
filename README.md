@@ -1,6 +1,28 @@
 # NotepadApplication
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+
+## Overview
+Simple Notepad application to showcase the following 
+- Learning Angular is Easy!!!
+- Formcontrol
+- Passing data from components to parents, vice versa
+- Using of Angular materials library
+  - Tabs
+  - Forms
+  - Inputs
+- Using of Flex layout module for easy templating and css formatting. 
+
+![image](https://user-images.githubusercontent.com/61023335/147453422-4db96a09-5f27-486d-a159-d64e2d5fd131.png)
+
+### Use case
+- Add file
+- Update file name
+- Delete file
+- Saving of texts into text files. 
+
+### Future Upgrades
+- Different file types
+- Dark theme
 
 ## Development server
 
